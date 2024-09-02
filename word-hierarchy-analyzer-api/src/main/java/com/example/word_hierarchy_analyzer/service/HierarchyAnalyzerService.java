@@ -1,4 +1,4 @@
-package com.example.service;
+package com.example.word_hierarchy_analyzer.service;
 
 import com.example.word_hierarchy_analyzer.model.HierarchyNode;
 import com.example.word_hierarchy_analyzer.model.AnalysisResult;

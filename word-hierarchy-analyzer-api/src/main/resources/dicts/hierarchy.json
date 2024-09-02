@@ -1,0 +1,28 @@
+{
+  "name": "Animais",
+  "children": [
+    {
+      "name": "Mamíferos",
+      "children": [
+        {
+          "name": "Carnívoros",
+          "children": [
+            {
+              "name": "Felinos",
+              "children": ["Leões", "Tigres", "Jaguars", "Leopardos"]
+            }
+          ]
+        },
+        {
+          "name": "Herbívoros",
+          "children": [
+            {
+              "name": "Equídeos",
+              "children": ["Cavalos", "Zebras", "Asnos"]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
