@@ -1,8 +1,5 @@
 package com.example.word_hierarchy_analyzer.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.List;
 
 public class HierarchyNode {
