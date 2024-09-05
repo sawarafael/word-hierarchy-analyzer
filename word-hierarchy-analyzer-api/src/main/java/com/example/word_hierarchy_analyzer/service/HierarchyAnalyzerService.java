@@ -4,6 +4,8 @@ import com.example.word_hierarchy_analyzer.model.HierarchyNode;
 import com.example.word_hierarchy_analyzer.model.AnalysisResult;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -13,14 +15,14 @@ import java.util.Map;
 
 @Service
 public class HierarchyAnalyzerService {
-    private HierarchyNode root;
+    private static final Logger logger = LoggerFactory.getLogger(HierarchyAnalyzerService.class);
 
     public void loadHierarchy(String filePath) throws IOException {
         long startTime = System.currentTimeMillis();
         ObjectMapper mapper = new ObjectMapper();
-        root = mapper.readValue(new File(filePath), HierarchyNode.class);
+        HierarchyNode root = mapper.readValue(new File(filePath), HierarchyNode.class);
         long loadTime = System.currentTimeMillis() - startTime;
-        System.out.println("Tempo de carregamento dos parâmetros: " + loadTime + "ms");
+        logger.info("Tempo de carregamento dos parâmetros: " + loadTime + "ms");
     }
 
     public AnalysisResult analyzePhrase(String phrase, int depth) {

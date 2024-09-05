@@ -2,6 +2,8 @@ package com.example.word_hierarchy_analyzer.controller;
 
 import com.example.word_hierarchy_analyzer.model.AnalysisResult;
 import com.example.word_hierarchy_analyzer.service.HierarchyAnalyzerService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import java.util.Map;
 
 @Controller
 public class CommandLineController implements CommandLineRunner {
+    private static final Logger logger = LoggerFactory.getLogger(CommandLineController.class);
 
     private final HierarchyAnalyzerService analyzerService;
 
@@ -21,7 +24,7 @@ public class CommandLineController implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         if (args.length < 3 || !args[0].equals("analyze")) {
-            System.out.println("Comando inválido. Uso correto: java -jar cli.jar analyze --depth <n> \"{frase}\" --verbose (opcional)");
+            logger.error("Comando inválido. Uso correto: java -jar cli.jar analyze --depth <n> \"{frase}\" --verbose (opcional)");
             return;
         }
 
@@ -35,7 +38,7 @@ public class CommandLineController implements CommandLineRunner {
             }
             depth = Integer.parseInt(args[depthIndex + 1]);
         } catch (NumberFormatException e) {
-            System.out.println("Erro: O valor de profundidade (--depth) deve ser um número inteiro.");
+            logger.error("Erro: O valor de profundidade (--depth) deve ser um número inteiro.");
             return;
         }
 
@@ -48,7 +51,7 @@ public class CommandLineController implements CommandLineRunner {
         String sentence = sentenceBuilder.toString().trim();
 
         if (sentence.isEmpty()) {
-            System.out.println("Erro: A frase para análise não foi encontrada.");
+            logger.error("Erro: A frase para análise não foi encontrada.");
             return;
         }
 
@@ -60,12 +63,12 @@ public class CommandLineController implements CommandLineRunner {
 
         long sentenceVerifyTime = System.currentTimeMillis() - startVerifyTime;
 
-        System.out.println("Resultado da análise:");
+        logger.info("Resultado da análise:");
         analysisResult.getWordCount().forEach((word, count) -> System.out.println(word + " = " + count));
 
         if (verbose) {
-            System.out.println("Tempo de carregamento dos parâmetros: " + paramLoadingTime + "ms");
-            System.out.println("Tempo de verificação da frase: " + sentenceVerifyTime + "ms");
+            logger.info("Tempo de carregamento dos parâmetros: " + paramLoadingTime + "ms");
+            logger.info("Tempo de verificação da frase: " + sentenceVerifyTime + "ms");
         }
     }
 }
