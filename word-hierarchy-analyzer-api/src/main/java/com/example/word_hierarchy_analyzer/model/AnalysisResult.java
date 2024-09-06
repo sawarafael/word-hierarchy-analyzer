@@ -30,4 +30,8 @@ public class AnalysisResult {
     public void setAnalysisTimeMs(long analysisTimeMs) {
         this.analysisTimeMs = analysisTimeMs;
     }
+
+    public void addWordCount(String animal, int i) {
+
+    }
 }

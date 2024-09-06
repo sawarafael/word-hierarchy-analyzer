@@ -4,12 +4,10 @@ import com.example.word_hierarchy_analyzer.model.AnalysisResult;
 import com.example.word_hierarchy_analyzer.service.HierarchyAnalyzerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Controller;
 
 import java.util.Arrays;
-import java.util.Map;
 
 @Controller
 public class CommandLineController implements CommandLineRunner {
