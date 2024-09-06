@@ -8,9 +8,8 @@ export default async function handler(
     };
   }
 ) {
-  if (req.method !== "POST") {
+  if (req.method !== "POST")
     return res.status(405).json({ message: "Método não permitido" });
-  }
 
   const { depth, sentence, verbose } = req.body;
 
@@ -21,9 +20,7 @@ export default async function handler(
       body: JSON.stringify({ depth, sentence, verbose }),
     });
 
-    if (!apiResponse.ok) {
-      throw new Error("Erro ao chamar a API de análise.");
-    }
+    if (!apiResponse.ok) throw new Error("Erro ao chamar a API de análise.");
 
     const data = await apiResponse.json();
     res.status(200).json({ result: data.result });
